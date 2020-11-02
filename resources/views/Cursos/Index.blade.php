@@ -7,7 +7,7 @@
                 <h2>Laravel 8 CRUD Example </h2>
             </div>
             <div class="pull-right">
-                <a class="btn btn-success" href="" title="Criar um curso"> <i class="fas fa-plus-circle"></i>
+                <a class="btn btn-success" href="{{ route('cursos.create') }}" title="Criar um curso"> <i class="fas fa-plus-circle"></i>
                     </a>
             </div>
         </div>
@@ -30,7 +30,7 @@
                 <td>{{++$i}}</td>
                 <td>{{$curso->nome}}</td>
                 <td>
-                    <form action="" method="POST">
+                    <form action="{{ route('cursos.destroy', $curso->id) }}" method="POST">
 
                         <a href="{{ route('cursos.show',$curso->id) }}" title="show">
                             <i class="fas fa-eye text-success  fa-lg"></i>

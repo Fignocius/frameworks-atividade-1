@@ -11,7 +11,9 @@ class Curso extends Model
 
     protected $table = 'curso';
 
-    protected $Fillable = [
+    public $timestamps = false;
+    
+    protected $fillable = [
         'nome'
     ];
 }

@@ -7,7 +7,7 @@
                 <h2>Adicionar novo curso</h2>
             </div>
             <div class="pull-right">
-                <a class="btn btn-primary" href="" title="Go back"> <i class="fas fa-backward "></i> </a>
+                <a class="btn btn-primary" href="{{ route('cursos.index') }}" title="Go back"> <i class="fas fa-backward "></i> </a>
             </div>
         </div>
     </div>
@@ -22,7 +22,7 @@
             </ul>
         </div>
     @endif
-    <form action="" method="POST" >
+    <form action="{{ route('cursos.store') }}" method="POST" >
         @csrf
 
         <div class="row">
