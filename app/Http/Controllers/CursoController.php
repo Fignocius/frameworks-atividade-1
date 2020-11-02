@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Curso;
+use App\Models\Disciplina;
 use Illuminate\Http\Request;
 
 class CursoController extends Controller
@@ -71,6 +72,18 @@ class CursoController extends Controller
     }
 
     /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  \App\Models\Curso  $curso
+     * @return \Illuminate\Http\Response
+     */
+    public function disciplina(Curso $curso)
+    {
+        $disciplinas = Disciplina::all();
+        return view('cursos.disciplina', compact('curso'), compact('disciplinas'));
+    }
+
+    /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -99,5 +112,26 @@ class CursoController extends Controller
         $curso->delete();
         return redirect()->route('cursos.index')
         ->with('success', 'Curso deletado com sucesso');
+    }
+
+    /**
+     * Adds disciplina the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\Curso  $curso
+     * @param  \App\Models\Disciplina  $disciplina
+     * @return \Illuminate\Http\Response
+     */
+    public function assignDisciplina(Request $request, Curso $curso)
+    {
+        $request->validate([
+            'disciplina' => 'required'
+        ]);
+        echo($request);
+        $disciplina = Disciplina::find($request->disciplina);
+        $curso->disciplinas()->save($disciplina);
+
+        return redirect()->route('cursos.show', $curso->id)
+            ->with('success', 'Curso atualizado com sucesso');
     }
 }

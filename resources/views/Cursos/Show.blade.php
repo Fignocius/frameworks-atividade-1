@@ -25,7 +25,7 @@
     <div class="col-xs-12 col-sm-12 col-md-12">
         <strong> Disciplinas cadastradas </strong>
         <div class="pull-right">
-            <a class="btn btn-success" href="{{ route('disciplinas.create') }}" title="vincular disciplina"> <i class="fas fa-plus-circle"></i>
+            <a class="btn btn-success" href="{{ route('cursos.disciplina', $curso->id) }}" title="vincular disciplina"> <i class="fas fa-plus-circle"></i>
             </a>
         </div>
     </div>

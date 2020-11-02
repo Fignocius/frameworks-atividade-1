@@ -20,4 +20,6 @@ Route::get('/', function () {
 });
 
 Route::resource('cursos', CursoController::class);
+Route::get('cursos/{curso}/disciplina', [CursoController::class, 'disciplina'])->name('cursos.disciplina');
+Route::post('cursos/{curso}/disciplina', [CursoController::class, 'assignDisciplina'])->name('cursos.assignDisciplina');
 Route::resource('disciplinas', DisciplinaController::class);
