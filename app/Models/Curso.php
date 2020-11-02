@@ -12,8 +12,13 @@ class Curso extends Model
     protected $table = 'curso';
 
     public $timestamps = false;
-    
+
     protected $fillable = [
         'nome'
     ];
+
+    public function disciplinas()
+    {
+        return $this->belongsToMany('App\Models\Disciplina', 'curso_disciplina', 'idCurso', 'idDisciplina');
+    }
 }
