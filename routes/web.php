@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CursoController;
 use App\Http\Controllers\DisciplinaController;
+use App\Http\Controllers\AlunoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,3 +24,6 @@ Route::resource('cursos', CursoController::class);
 Route::get('cursos/{curso}/disciplina', [CursoController::class, 'disciplina'])->name('cursos.disciplina');
 Route::post('cursos/{curso}/disciplina', [CursoController::class, 'assignDisciplina'])->name('cursos.assignDisciplina');
 Route::resource('disciplinas', DisciplinaController::class);
+Route::resource('alunos', AlunoController::class);
+Route::get('alunos/{aluno}/disciplina', [AlunoController::class, 'disciplina'])->name('alunos.disciplina');
+Route::post('alunos/{aluno}/disciplina', [AlunoController::class, 'assignDisciplina'])->name('alunos.assignDisciplina');
