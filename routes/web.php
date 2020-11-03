@@ -27,3 +27,4 @@ Route::resource('disciplinas', DisciplinaController::class);
 Route::resource('alunos', AlunoController::class);
 Route::get('alunos/{aluno}/disciplina', [AlunoController::class, 'disciplina'])->name('alunos.disciplina');
 Route::post('alunos/{aluno}/disciplina', [AlunoController::class, 'assignDisciplina'])->name('alunos.assignDisciplina');
+Route::delete('alunos/{aluno}/disciplina/{disciplina}/remove', [AlunoController::class, 'removeDisciplina'])->name('alunos.removeDisciplina');

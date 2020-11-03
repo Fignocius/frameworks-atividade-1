@@ -142,4 +142,19 @@ class AlunoController extends Controller
         return redirect()->route('alunos.show', $aluno->id)
             ->with('success', 'Aluno atualizado com sucesso');
     }
+
+     /**
+     * Remove disciplina the specified resource in storage.
+     *
+     * @param  \App\Models\Aluno  $aluno
+     * @param  \App\Models\Disciplina  $disciplina
+     * @return \Illuminate\Http\Response
+     */
+    public function removeDisciplina(Aluno $aluno, Disciplina $disciplina)
+    {
+        $aluno->disciplinas()->detach($disciplina);
+
+        return redirect()->route('alunos.show', $aluno->id)
+            ->with('success', 'Disciplina removida com sucesso');
+    }
 }

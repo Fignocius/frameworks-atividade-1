@@ -12,7 +12,16 @@
             </div>
         </div>
     </div>
-
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <strong>Error!</strong> 
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="form-group">
@@ -33,16 +42,26 @@
         $map = array('0'=>'Em curso', '1'=>'Aprovado', '2'=>'Reprovado', '3'=>'Trancado');
     @endphp
     <div class="col-xs-12 col-sm-12 col-md-12">
-        <div class="col-xs-4 col-sm-4 col-md-4">Disciplina</div>
-        <div class="col-xs-4 col-sm-4 col-md-4">Semestre</div>
-        <div class="col-xs-4 col-sm-4 col-md-4">Situação</div>
+        <div class="col-xs-3 col-sm-3 col-md-3">Disciplina</div>
+        <div class="col-xs-3 col-sm-3 col-md-3">Semestre</div>
+        <div class="col-xs-3 col-sm-3 col-md-3">Situação</div>
+        <div class="col-xs-3 col-sm-3 col-md-3">Açoes</div>
     </div>
     @foreach ($aluno->disciplinas as $disciplina)
+    <form action="{{ route('alunos.removeDisciplina',['aluno'=> $aluno,'disciplina' => $disciplina]) }}" method="POST">
         <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="col-xs-4 col-sm-4 col-md-4">{{ $disciplina->nome }}</div>
-            <div class="col-xs-4 col-sm-4 col-md-4">{{ $disciplina->pivot->semestre }}</div>
-            <div class="col-xs-4 col-sm-4 col-md-4">{{ $map[$disciplina->pivot->situacao] }}</div>
+            <div class="col-xs-3 col-sm-3 col-md-3">{{ $disciplina->nome }}</div>
+            <div class="col-xs-3 col-sm-3 col-md-3">{{ $disciplina->pivot->semestre }}</div>
+            <div class="col-xs-3 col-sm-3 col-md-3">{{ $map[$disciplina->pivot->situacao] }}</div>
+            <div class="col-xs-3 col-sm-3 col-md-3">
+                @csrf
+                @method('DELETE')
+                <button type="submit" title="delete" style="border: none; background-color:transparent;">
+                    <i class="fas fa-trash fa-lg text-danger"></i>
+                </button>
+            </div>
         </div>
+    </form>
     @endforeach
     </div>
 @endsection
