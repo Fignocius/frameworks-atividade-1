@@ -99,6 +99,30 @@ class AlunoController extends Controller
         //$aluno = Aluno::find($aluno);
         return view('alunos.editDisciplina', compact('aluno'), compact('disciplina'));
     }
+
+    /**
+     * Update disciplina the form for editing the specified resource.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\Aluno  $aluno
+     * @param  \App\Models\Disciplina  $disciplina
+     * @return \Illuminate\Http\Response
+     */
+    public function updateDisciplina(Request $request, Aluno $aluno, Disciplina $disciplina)
+    {
+        $request->validate([
+            'semestre' => 'required',
+            'situacao' => 'required',
+        ]);
+;
+        $aluno->disciplinas()->updateExistingPivot($disciplina, [
+            'semestre' => $request->semestre,
+            'situacao'=> $request->situacao
+        ], true);
+        return redirect()->route('alunos.editDisciplina', ['aluno'=>$aluno, 'disciplina' => $disciplina])
+        ->with('success', 'Disciplina atualizada com sucesso');
+    }
+
     /**
      * Update the specified resource in storage.
      *

@@ -22,7 +22,7 @@
             </ul>
         </div>
     @endif
-   <form action="{{ route('alunos.updateDisciplina', ['aluno'=>$aluno->id, 'disciplina'=>$disciplina->id]) }}" method="POST" >
+   <form action="{{ route('alunos.updateDisciplina', ['aluno'=>$aluno, 'disciplina'=>$disciplina]) }}" method="POST" >
         @csrf
 
         <div class="row">
@@ -36,7 +36,7 @@
                     </div>
                     <div class="row py-4">
                         <div class="col-xs-4 col-sm-4 col-md-4">
-                            <input type="text" name="semestre" class="form-control" value="{{$aluno->disciplinas()[$disciplina->id]->pivot->semestre}}" placeholder="semestre" />
+                            <input type="text" name="semestre" class="form-control" value="{{$aluno->disciplinas[$disciplina->id - 1]->pivot->semestre}}" placeholder="semestre" />
                         </div>
                         <div class="col-xs-4 col-sm-4 col-md-4">
                             <select name="situacao" class="form-control" value="" required>
@@ -53,5 +53,5 @@
                 <button type="submit" class="btn btn-primary">Adicionar</button>
             </div>
         </div>
-    </form> -->
+    </form>
 @endsection
