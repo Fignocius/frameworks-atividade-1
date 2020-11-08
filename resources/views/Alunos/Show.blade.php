@@ -54,6 +54,9 @@
             <div class="col-xs-3 col-sm-3 col-md-3">{{ $disciplina->pivot->semestre }}</div>
             <div class="col-xs-3 col-sm-3 col-md-3">{{ $map[$disciplina->pivot->situacao] }}</div>
             <div class="col-xs-3 col-sm-3 col-md-3">
+                <a href="{{ route('alunos.editDisciplina',['aluno'=> $aluno->id,'disciplina' => $disciplina->id]) }}">
+                    <i class="fas fa-edit  fa-lg"></i>
+                </a>
                 @csrf
                 @method('DELETE')
                 <button type="submit" title="delete" style="border: none; background-color:transparent;">

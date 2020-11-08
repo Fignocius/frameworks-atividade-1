@@ -87,6 +87,19 @@ class AlunoController extends Controller
     }
 
     /**
+     * Edit disciplina the form for editing the specified resource.
+     *
+     * @param  \App\Models\Aluno  $aluno
+     * @param  \App\Models\Disciplina  $disciplina
+     * @return \Illuminate\Http\Response
+     */
+    public function editDisciplina(Aluno $aluno, Disciplina $disciplina)
+    {
+        //$disciplina = Disciplina::find($disciplina);
+        //$aluno = Aluno::find($aluno);
+        return view('alunos.editDisciplina', compact('aluno'), compact('disciplina'));
+    }
+    /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
